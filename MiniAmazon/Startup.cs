@@ -64,8 +64,41 @@ namespace MiniAmazon
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                    name: null,
+                    pattern: "catalogo/{categoriaslug}/{marcaslug}/page{page:int}",
+                    defaults: new 
+                    { 
+                        controller = "Catalogo",
+                        action = "Index" 
+                    }
+                );
+
+                endpoints.MapControllerRoute(
+                    name: null,
+                    pattern: "page{page:int}",
+                    defaults: new
+                    {
+                        controller = "Catalogo",
+                        action = "Index",
+                        paginaProducto=1
+                    }
+                );
+
+                endpoints.MapControllerRoute(
+                    name: null,
+                    pattern: "catalogo/{categoriaslug}/{marcaslug}/",
+                    defaults: new
+                    {
+                        controller = "Catalogo",
+                        action = "Index",
+                        paginaProducto = 1
+                    }
+                );
+
+
+                endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Catalogo}/{action=Index}/{id?}");
             });
         }
     }
