@@ -9,8 +9,4 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.1.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Servicies\" />
-  </ItemGroup>
-
 </Project>

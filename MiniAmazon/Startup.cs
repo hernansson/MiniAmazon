@@ -14,6 +14,9 @@ using MiniAmazon.Database;
 using Microsoft.EntityFrameworkCore;
 using MiniAmazon.Repositories;
 using MiniAmazon.Repositories.Implementations;
+using MiniAmazon.Servicies;
+using MiniAmazon.Servicies.Implementations;
+using Microsoft.AspNetCore.Http;
 
 namespace MiniAmazon
 {
@@ -34,6 +37,8 @@ namespace MiniAmazon
             services.AddTransient<IProductRepository, ProductRepository>(); //para poder usar el_context, la bd interna.
             services.AddTransient<IMarcaRepository, MarcaRepository>();
             services.AddTransient<ICategoriaRepository, CategoriaRepository>();
+            services.AddTransient<ICatalogoService, CatalogoService>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
         
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
