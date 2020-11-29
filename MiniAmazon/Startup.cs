@@ -12,6 +12,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Sqlite;
 using MiniAmazon.Database;
 using Microsoft.EntityFrameworkCore;
+using MiniAmazon.Repositories;
+using MiniAmazon.Repositories.Implementations;
 
 namespace MiniAmazon
 {
@@ -28,7 +30,10 @@ namespace MiniAmazon
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddDbContext<MiniAmazonDbContext>(optionsAction:options => options.UseSqlite(Configuration["Data:MiniAmazonWebApp:ConnectionString"]));
+            services.AddDbContext<MiniAmazonDbContext>(optionsAction: options => options.UseSqlite(Configuration["Data:MiniAmazonWebApp:ConnectionString"]));
+            services.AddTransient<IProductRepository, ProductRepository>(); //para poder usar el_context, la bd interna.
+            services.AddTransient<IMarcaRepository, MarcaRepository>();
+            services.AddTransient<ICategoriaRepository, CategoriaRepository>();
         }
         
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
